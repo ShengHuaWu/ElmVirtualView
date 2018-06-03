@@ -23,9 +23,9 @@ final class Render {
             render(textCell: textCell, into: uiTextCell)
             return uiTextCell
         case let .tableView(tableView):
-            // TODO: Let data source to create the cells
-            let uiTextCells = tableView.cells.map { render(view: .textCell($0)) } as! [MyTextCell]
-            let dataSource = MyTableViewDataSource(cells: uiTextCells)
+            let dataSource = MyTableViewDataSource(numberOfRowsInSection: { _ in return tableView.cells.count }, cellForRowAtIndexPath: { [unowned self] indexPath in
+                return self.render(view: .textCell(tableView.cells[indexPath.row])) as! UITableViewCell
+            })
             let uiTableView = UITableView(frame: .zero, style: .plain)
             uiTableView.dataSource = dataSource
             strongReferences.append(dataSource)
@@ -47,5 +47,6 @@ extension Render {
     
     private func render(tableView: TableView, into uiTableView: UITableView) {
         uiTableView.separatorStyle = tableView.separatorStyle
+        uiTableView.rowHeight = tableView.rowHeight
     }
 }

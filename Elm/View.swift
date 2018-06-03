@@ -38,9 +38,11 @@ struct TextCell {
 struct TableView {
     let cells: [TextCell]
     let separatorStyle: UITableViewCellSeparatorStyle
+    let rowHeight: CGFloat
     
-    init(cells: [TextCell], separatorStyle: UITableViewCellSeparatorStyle = .singleLine) {
+    init(cells: [TextCell], separatorStyle: UITableViewCellSeparatorStyle = .singleLine, rowHeight: CGFloat = 44) {
         self.cells = cells
         self.separatorStyle = separatorStyle
+        self.rowHeight = 44
     }
 }
