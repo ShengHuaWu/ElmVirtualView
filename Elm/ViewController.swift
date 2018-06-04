@@ -22,8 +22,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let tableView = r.render(view: subview)
-        tableView.frame = view.bounds
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
+        
+        view.addConstraints([
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
     }
 }
 
