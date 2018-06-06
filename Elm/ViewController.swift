@@ -14,8 +14,10 @@ class ViewController: UIViewController {
         TextCell(label: Label(text: "1")),
         TextCell(label: Label(text: "2")),
         TextCell(label: Label(text: "3")),
+        ButtonCell(button: Button(label: Label(text: "test", textColor: .white)), backgroundColor: .red),
         TextCell(label: Label(text: "4")),
-        TextCell(label: Label(text: "5"))
+        TextCell(label: Label(text: "5")),
+        ButtonCell(button: Button(label: Label(text: "test", textColor: .white)), backgroundColor: .blue)
         ]))
 
     override func viewDidLoad() {

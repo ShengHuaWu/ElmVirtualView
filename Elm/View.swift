@@ -12,6 +12,18 @@ enum View {
     case tableView(TableView)
     case textCell(TextCell)
     case label(Label)
+    case button(Button)
+    case buttonCell(ButtonCell)
+}
+
+struct Button {
+    let label: Label
+    let backgroundColor: UIColor
+    
+    init(label: Label, backgroundColor: UIColor = .gray) {
+        self.label = label
+        self.backgroundColor = backgroundColor
+    }
 }
 
 struct Label {
@@ -25,7 +37,17 @@ struct Label {
     }
 }
 
-struct TextCell {
+class ButtonCell: TextCell {
+    let button: Button
+//    let backgroundColor: UIColor
+    
+    init(button: Button, backgroundColor: UIColor = .white) {
+        self.button = button
+        super.init(label: Label.init(text: ""), backgroundColor: backgroundColor)
+    }
+}
+
+class TextCell {
     let label: Label
     let backgroundColor: UIColor
     

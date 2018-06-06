@@ -22,6 +22,15 @@ final class Render {
             let uiTextCell = MyTextCell(titleLabel: titleLabel)
             render(textCell: textCell, into: uiTextCell)
             return uiTextCell
+        case let .button(button):
+            let uiButton = UIButton(type: .custom)
+            render(button: button, into: uiButton)
+            return uiButton
+        case let .buttonCell(buttonCell):
+            let button = render(view: .button(buttonCell.button)) as! UIButton
+            let uiButtonCell = MyButtonCell(button: button)
+            render(buttonCell: buttonCell, into: uiButtonCell)
+            return uiButtonCell
         case let .tableView(tableView):
             let dataSource = MyTableViewDataSource(numberOfRowsInSection: { _ in return tableView.cells.count }, cellForRowAtIndexPath: { [unowned self] indexPath in
                 return self.render(view: .textCell(tableView.cells[indexPath.row])) as! UITableViewCell
@@ -36,6 +45,16 @@ final class Render {
 }
 
 extension Render {
+    
+    private func render(buttonCell: ButtonCell, into uiButtonCell: MyButtonCell) {
+        uiButtonCell.backgroundColor = uiButtonCell.backgroundColor
+    }
+    
+    private func render(button: Button, into uiButton: UIButton) {
+        uiButton.setTitle(button.label.text, for: .normal)
+        uiButton.setTitleColor(button.label.textColor, for: .normal)
+    }
+    
     private func render(label: Label, into uiLabel: UILabel) {
         uiLabel.text = label.text
         uiLabel.textColor = label.textColor

@@ -8,6 +8,31 @@
 
 import UIKit
 
+final class MyButtonCell: UITableViewCell {
+    let button: UIButton
+    
+    init(button: UIButton) {
+        self.button = button
+        self.button.translatesAutoresizingMaskIntoConstraints = false
+        
+        super.init(style: .default, reuseIdentifier: nil)
+        
+        self.contentView.addSubview(self.button)
+        
+        self.contentView.addConstraints([
+            self.button.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            self.button.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+//            self.button.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20)
+            self.button.widthAnchor.constraint(equalToConstant: 100),
+            self.button.heightAnchor.constraint(equalToConstant: 44)
+            ])
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
+}
+
 final class MyTextCell: UITableViewCell {
     let titleLabel: UILabel
     
